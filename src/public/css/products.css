@@ -1,0 +1,27 @@
+.products-list-item img{
+    /* display: flex; */
+    width: 100%;
+    /* flex-direction: column; */
+}
+
+/* .products-list-item {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+} */
+
+.products-list{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    width: 80%;
+    flex-direction: row;
+}
+
+.products-list li {
+    list-style: none;
+    /* width: calc(100%/3); */
+    width: 30%;
+    border: solid 1px #f4f4f4;
+    margin: 5px;
+}
