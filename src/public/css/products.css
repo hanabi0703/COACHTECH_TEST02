@@ -1,14 +1,6 @@
 .products-list-item img{
-    /* display: flex; */
     width: 100%;
-    /* flex-direction: column; */
 }
-
-/* .products-list-item {
-    display: flex;
-    width: 30%;
-    flex-direction: column;
-} */
 
 .products-list{
     display: flex;
@@ -20,8 +12,27 @@
 
 .products-list li {
     list-style: none;
-    /* width: calc(100%/3); */
     width: 30%;
     border: solid 1px #f4f4f4;
     margin: 5px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: end;
+    margin: 20px;
+}
+
+.pagination li a,
+.disabled {
+    border: solid 1px #E0DFDE;
+    text-decoration: none;
+    padding: 5px;
+    color: #8B7969;
+}
+
+svg.w-5.h-5 {
+    /*paginateメソッドの矢印の大きさ調整のために追加*/
+    width: 30px;
+    height: 30px;
 }
