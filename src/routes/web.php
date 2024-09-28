@@ -16,3 +16,8 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/search', [ProductController::class, 'search']);
+
+// Route::get('/', [ProductController::class, 'edit']);
+Route::get('/products/{id}', [ProductController::class, 'edit'])->name('products.edit');
+
+Route::post('/', [ProductController::class, 'update']);

@@ -6,15 +6,6 @@
 
 @section('title', 'mogitate')
 
-@section('button')
-<nav class="header-nav">
-    <form class="form_logout" action="/logout" method="post">
-        @csrf
-        <button class="header-nav__button">logout</button>
-    </form>
-</nav>
-@endsection
-
 @section('content')
 <div class="products-page">
     <div class="products__heading">
@@ -38,8 +29,10 @@
     <ul class="products-list">
         @foreach ($products as $product)
             <li>
-                <div class="products-list-item">
-                    <img src="{{ asset('storage/images/'. $product->image) }}" alt="">
+                <div class="products-list__item">
+                    <a href="{{ route('products.edit', ['id'=>$product->id]) }}" class="product-list__link">
+                        <img src="{{ asset('storage/images/'. $product->image) }}" alt="">
+                    </a>
                     <span class="">{{$product->name}}</span>
                     <span class="">{{$product->price}}</span>
                 </div>
@@ -47,7 +40,6 @@
             @endforeach
     </ul>
     <div class="pagination">
-        {{ $products->links() }}
     </div>
 </div>
 @endsection
