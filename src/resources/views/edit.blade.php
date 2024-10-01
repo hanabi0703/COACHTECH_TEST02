@@ -8,38 +8,42 @@
 
 @section('content')
 <div class="edit-page">
-    <form class="form" action="/revise" method="post">
+
+    <form class="form" action="/products/{id}/update" method="post">
     @csrf
+    <input type="hidden" name="id" value="{{ $product['id'] }}"/>
     <div>
         <img src="{{ asset('storage/images/'. $product->image) }}" alt="">
+        <!-- <input type="text" name="name" value="{{ $product['name'] }}"/> -->
     </div>
     <div>
         <span>商品名</span>
         <input type="text" name="name" value="{{ $product['name'] }}"/>
     </div>
     <div>
-        <span>値段
-        </span>
+        <span>値段</span>
         <input type="text" name="price" value="{{ $product['price'] }}"/>
     </div>
     <div>
         <span>季節</span>
-        <input type="checkbox" name="spring" value="{{ $product['name'] }}"/>
-        <label for="spring">春</label>
-        <input type="checkbox" name="summer" value="{{ $product['name'] }}"/>
-        <label for="summer">夏</label>
-        <input type="checkbox" name="autumn" value="{{ $product['name'] }}"/>
-        <label for="autumn">秋</label>
-        <input type="checkbox" name="winter" value="{{ $product['name'] }}"/>
-        <label for="winter">冬</label>
+        @foreach ($seasons as $season)
+        <label>
+            <input type="checkbox" name="season_ids[]" value="{{$season->id}}" {{ $product->seasons->contains($season->id)? 'checked' : '' }}/>
+        {{$season->name}}</label>
+        @endforeach
     </div>
     <div>
         <span>商品説明</span>
         <textarea name="description">{{ $product['description'] }}</textarea>
     </div>
     <a class="" href="/">戻る</a>
-	<p><input type="button" value="変更を保存" id="button2"></p>
+    <button class="form__button-submit" type="submit">変更を保存</button>
     </form>
-
+    <form class="form" action="{{ route('products.delete', ['id'=>$product->id]) }}" method="post">
+        @csrf
+        <button class="" type="submit">
+            <img src="{{ asset('storage/images/dustbox.png') }}" alt=""/>
+        </button>
+    </form>
 </div>
 @endsection

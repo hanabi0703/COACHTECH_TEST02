@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Season;
+use Illuminate\Support\Facades\Log;
+
 
 class ProductController extends Controller
 {
@@ -21,14 +24,33 @@ class ProductController extends Controller
 
     public function edit(Request $request){
         $product = Product::find($request->id);
-        return view('edit', compact('product'));
+        // $season = Product::seasons();
+        $seasons = Season::all();
+        return view('edit', compact('product', 'seasons'));
     }
 
     public function update(Request $request)
     {
         $form = $request->all();
+        // $form = [
+        //     'name' => $request -> name,
+        //     'price' => $request -> price,
+        //     'image' => $request -> image,
+        //     'description' => $request -> description,
+        // ]
+        // $season_ids = [1, 2, 3];
         unset($form['_token']);
+        Log::debug($form);
         Product::find($request->id)->update($form);
-        return redirect('products');
+        Product::find($request->id)->seasons()->sync($request->season_ids);
+        return redirect('/');
     }
+
+        public function delete(Request $request)
+    {
+        Log::debug($request->id);
+        Product::find($request->id)->delete();
+        return redirect('/');
+    }
+
 }
