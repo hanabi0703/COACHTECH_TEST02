@@ -15,6 +15,7 @@
     @csrf
             <button class="add-form__button-submit" type="submit">+商品を追加</button>
     </form>
+    <a href="/products/register">+商品を追加</a>
     <form class="search-form" action="/products/search" method="get">
     @csrf
         <div class="products-form__item">

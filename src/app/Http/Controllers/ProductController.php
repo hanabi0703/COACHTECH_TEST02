@@ -24,7 +24,6 @@ class ProductController extends Controller
 
     public function edit(Request $request){
         $product = Product::find($request->id);
-        // $season = Product::seasons();
         $seasons = Season::all();
         return view('edit', compact('product', 'seasons'));
     }
@@ -32,23 +31,40 @@ class ProductController extends Controller
     public function update(Request $request)
     {
         $form = $request->all();
-        // $form = [
-        //     'name' => $request -> name,
-        //     'price' => $request -> price,
-        //     'image' => $request -> image,
-        //     'description' => $request -> description,
-        // ]
-        // $season_ids = [1, 2, 3];
         unset($form['_token']);
-        Log::debug($form);
+        Log::debug($request);
+        if($request->image){
+        $image_path = $request->file('image')->store('public/images');
+        $form['image'] = basename($image_path);
+        }
         Product::find($request->id)->update($form);
         Product::find($request->id)->seasons()->sync($request->season_ids);
         return redirect('/');
     }
 
-        public function delete(Request $request)
+    public function add(Request $request)
     {
-        Log::debug($request->id);
+        $seasons = Season::all();
+        return view('add', compact('seasons'));
+    }
+
+    public function register(Request $request)
+    {
+        $form = $request->all();
+        unset($form['_token']);
+        Log::debug($request);
+        if($request->image){
+        $image_path = $request->file('image')->store('public/images');
+        $form['image'] = basename($image_path);
+        }
+        $product = Product::create($form);
+        $product->seasons()->sync($request->season_ids);
+        // Log::debug($request);
+        return redirect('/');
+    }
+
+    public function delete(Request $request)
+    {
         Product::find($request->id)->delete();
         return redirect('/');
     }
