@@ -6,6 +6,9 @@
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
   <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+<style>
+@import url('https://fonts.cdnfonts.com/css/jsmath-cmti10');
+</style>
     @yield('css')
     @yield('js')
 </head>

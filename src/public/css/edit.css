@@ -1,0 +1,148 @@
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.content {
+    margin: 20% auto;
+    /* text-align: left; */
+}
+
+.edit-page {
+    /* width: 80%; */
+}
+
+.form__error {
+    color: red;
+}
+
+.edit-contents__upper {
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-form__contents {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form__content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 30px 30px;
+}
+
+span {
+    color: #4B4B4B;
+}
+
+.edit-form__content input,
+.edit-form__content textarea{
+    padding: 10px;
+    border: solid 1px #E0DFDE;
+}
+
+.edit__figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit__figure-exist {
+    text-align: left;
+    margin: 0;
+}
+
+.edit__figure img {
+    width: 500px;
+}
+
+.content__seasons {
+    display: flex;
+    flex-direction: row;
+}
+
+.seasons__content input{
+    margin-left: 30px;
+    border-radius: 50%;
+    appearance: none;
+}
+
+.seasons__content input:checked {
+    margin-left: 30px;
+    background-color: #4B4B4B;
+}
+
+.seasons__content input:checked:after {
+    display: block;
+    position: absolute;
+    content:"";
+    width: 12px;
+    height: 7px;
+    color: #fff;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    transform: rotate(-45deg);
+    margin: -5px -6px auto;
+}
+
+.edit-contents__lower {
+    margin-top: 30px;
+}
+
+.textarea-content {
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+    border: solid 1px #E0DFDE;
+    resize: none;
+}
+
+.form__button {
+    margin-top: 30px;
+
+}
+
+.form__button-back {
+    position: relative;
+    margin: 100px;
+    z-index: 100;
+}
+
+.form__button-back::before {
+    position: absolute;
+    content:"";
+    height: 50px;
+    width: 200px;
+    background-color: #E0DFDE;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: -1;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.35);
+}
+
+.form__button-back:hover::before {
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.50);
+}
+
+.form__button-submit {
+    margin-left: 100px;
+    height: 50px;
+    width: 200px;
+    border: none;
+    background-color: #F5C800;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.35);
+}
+
+.form__button-submit:hover {
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.50);
+}
+
+.form__button-dustbox {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    /* right: 13%; */
+    /* bottom: 9%; */
+}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\AddRequest;
 
 
 class ProductController extends Controller
@@ -23,16 +24,16 @@ class ProductController extends Controller
     }
 
     public function edit(Request $request){
+
         $product = Product::find($request->id);
         $seasons = Season::all();
         return view('edit', compact('product', 'seasons'));
     }
 
-    public function update(Request $request)
+    public function update(AddRequest $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        Log::debug($request);
         if($request->image){
         $image_path = $request->file('image')->store('public/images');
         $form['image'] = basename($image_path);
@@ -48,11 +49,11 @@ class ProductController extends Controller
         return view('add', compact('seasons'));
     }
 
-    public function register(Request $request)
+    public function register(AddRequest $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        Log::debug($request);
+        // Log::debug($request);
         if($request->image){
         $image_path = $request->file('image')->store('public/images');
         $form['image'] = basename($image_path);
@@ -65,6 +66,8 @@ class ProductController extends Controller
 
     public function delete(Request $request)
     {
+        $product = Product::find($request->id);
+        $product->seasons()->detach();
         Product::find($request->id)->delete();
         return redirect('/');
     }
